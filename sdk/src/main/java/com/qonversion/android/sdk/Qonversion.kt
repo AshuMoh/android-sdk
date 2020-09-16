@@ -14,6 +14,7 @@ import com.qonversion.android.sdk.logger.ConsoleLogger
 import com.qonversion.android.sdk.logger.StubLogger
 import com.qonversion.android.sdk.storage.TokenStorage
 import com.qonversion.android.sdk.validator.TokenValidator
+import com.qonversion.android.sdk.attribution.AttributionSource
 
 class Qonversion private constructor(
     private val billing: QonversionBilling?,
@@ -86,7 +87,6 @@ class Qonversion private constructor(
             if (instance != null) {
                 return instance!!
             }
-
             if (key.isEmpty()) {
                 throw RuntimeException("Qonversion initialization error! Key should not be empty!")
             }
@@ -134,6 +134,15 @@ class Qonversion private constructor(
                 instance = it
             }
         }
+
+        @JvmStatic
+        fun attribution(
+                conversionInfo: Map<String, Any>,
+                from: AttributionSource,
+                conversionUid: String
+        ) {
+            repository.attribution(conversionInfo, from.id, conversionUid)
+        }
     }
 
     fun purchase(details: SkuDetails, p: Purchase) {
@@ -152,6 +161,7 @@ class Qonversion private constructor(
         repository.purchase(purchase, callback)
     }
 
+    @Deprecated
     fun attribution(
         conversionInfo: Map<String, Any>,
         from: AttributionSource,

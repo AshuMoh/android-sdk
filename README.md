@@ -293,9 +293,9 @@ for passing the attribution data dictionary:
 ```java
     @Override
     public void onConversionDataSuccess(final Map<String, Object> conversionData) {
-          Qonversion.getInstance().attribution(
+          Qonversion.attribution(
                   conversionData, 
-                  AttributionSource.APPSFLYER, 
+                  AttributionSource.APPSFLYER,
                   AppsFlyerLib.getInstance().getAppsFlyerUID(this)
                   );
     }
@@ -304,7 +304,7 @@ for passing the attribution data dictionary:
 
 ```kotlin
     override fun onConversionDataSuccess(conversionData: Map<String, Any>) {
-        Qonversion.instance?.attribution(
+        Qonversion.attribution(
             conversionData,
             AttributionSource.APPSFLYER,
             AppsFlyerLib.getInstance().getAppsFlyerUID(applicationContext)
