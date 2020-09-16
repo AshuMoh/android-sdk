@@ -1,1 +1,5 @@
 include ':app', ':sdk'
+
+gitRepository("https://github.com/qonversion/android-sdk.git") {
+    producesModule("qonversion/android-sdk")
+}
